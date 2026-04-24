@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import craftHands from "@/assets/craft-hands.jpg";
-import boutique from "@/assets/boutique.jpg";
+import { stockImages } from "@/data/products";
 import { Reveal } from "@/components/Reveal";
+
+const craftHands = stockImages.craftHands;
+const boutique = stockImages.boutique;
 
 const Maison = () => {
   const ref = useRef<HTMLDivElement>(null);

@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
-import heroWatch from "@/assets/hero-watch.jpg";
-import craftHands from "@/assets/craft-hands.jpg";
-import boutique from "@/assets/boutique.jpg";
-import { products } from "@/data/products";
+import { products, stockImages } from "@/data/products";
+
+const heroWatch = stockImages.heroWatch;
+const craftHands = stockImages.craftHands;
+const boutique = stockImages.boutique;
 import { Reveal } from "@/components/Reveal";
 
 const Home = () => {

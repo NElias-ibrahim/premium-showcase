@@ -1,5 +1,7 @@
 import { Reveal } from "@/components/Reveal";
-import boutique from "@/assets/boutique.jpg";
+import { stockImages } from "@/data/products";
+
+const boutique = stockImages.boutique;
 
 const stores = [
   { city: "Paris", address: "12 rue de la Paix, 75002", phone: "+33 1 42 60 00 00", hours: "Lun – Sam : 10h – 19h" },
