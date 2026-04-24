@@ -16,9 +16,9 @@ export const Reveal = ({ children, delay = 0, y = 32, className, as = "div" }: R
 
   return (
     <MotionTag
-      ref={ref}
+      ref={ref as React.Ref<HTMLDivElement>}
       initial={{ opacity: 0, y }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
       transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
