@@ -2,7 +2,6 @@ export interface Product {
   slug: string;
   name: string;
   category: "Category A" | "Category B" | "Category C" | "Category D";
-  price: string;
   tagline: string;
   description: string;
   image: string;
@@ -25,7 +24,6 @@ export const products: Product[] = [
     slug: "product-one",
     name: "Product One",
     category: "Category A",
-    price: "$ 1,299",
     tagline: "A short, punchy product tagline.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
@@ -35,15 +33,14 @@ export const products: Product[] = [
       { label: "Material", value: "Sample material" },
       { label: "Dimensions", value: "00 × 00 × 00 cm" },
       { label: "Weight", value: "000 g" },
-      { label: "Warranty", value: "2 years" },
       { label: "Origin", value: "Country of origin" },
+      { label: "Collection", value: "Latest" },
     ],
   },
   {
     slug: "product-two",
     name: "Product Two",
     category: "Category A",
-    price: "$ 1,899",
     tagline: "Another short, punchy tagline.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
@@ -59,7 +56,6 @@ export const products: Product[] = [
     slug: "product-three",
     name: "Product Three",
     category: "Category B",
-    price: "$ 799",
     tagline: "A short product tagline.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
@@ -75,7 +71,6 @@ export const products: Product[] = [
     slug: "product-four",
     name: "Product Four",
     category: "Category C",
-    price: "$ 449",
     tagline: "Tagline goes here.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -91,7 +86,6 @@ export const products: Product[] = [
     slug: "product-five",
     name: "Product Five",
     category: "Category D",
-    price: "$ 199",
     tagline: "Tagline goes here.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
@@ -101,6 +95,20 @@ export const products: Product[] = [
       { label: "Material", value: "Sample material" },
       { label: "Dimensions", value: "00 × 00 cm" },
       { label: "Care", value: "Sample care instruction" },
+    ],
+  },
+  {
+    slug: "product-six",
+    name: "Product Six",
+    category: "Category B",
+    tagline: "Tagline goes here.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis autem vel eum iure reprehenderit qui in ea voluptate velit.",
+    image: stockImages.boutique,
+    details: [
+      { label: "Feature", value: "Lorem ipsum value" },
+      { label: "Material", value: "Sample material" },
+      { label: "Origin", value: "Country of origin" },
     ],
   },
 ];

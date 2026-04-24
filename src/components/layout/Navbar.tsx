@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, Search, ShoppingBag } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/collection", label: "Shop" },
+  { to: "/collection", label: "Collection" },
   { to: "/maison", label: "About" },
   { to: "/boutiques", label: "Stores" },
-  { to: "/contact", label: "Support" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export const Navbar = () => {
@@ -44,10 +44,7 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-5 text-muted-foreground">
-          <button aria-label="Search" className="hover:text-foreground transition-colors"><Search size={15} /></button>
-          <button aria-label="Bag" className="hover:text-foreground transition-colors"><ShoppingBag size={15} /></button>
-        </div>
+        <div className="hidden md:block w-[60px]" aria-hidden />
 
         <button
           className="md:hidden p-2 -mr-2 text-foreground"

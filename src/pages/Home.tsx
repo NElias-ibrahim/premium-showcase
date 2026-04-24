@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <>
-      {/* HERO — Apple-style: huge centered title + product below */}
+      {/* HERO */}
       <section className="bg-background pt-16 pb-12 md:pt-20 md:pb-16">
         <div className="container-tight text-center">
           <motion.p
@@ -43,20 +43,11 @@ const Home = () => {
             transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mt-6 flex items-center justify-center gap-5 text-base"
           >
-            <Link to="/collection" className="pill-btn-primary">Buy</Link>
+            <Link to="/collection" className="pill-btn-primary">Discover</Link>
             <Link to="/collection/product-one" className="pill-btn-ghost">
               Learn more <ChevronRight size={14} className="ml-1" />
             </Link>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-3 text-xs text-muted-foreground"
-          >
-            From $0,000 or $00.00/mo. for 12 mo.*
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
@@ -77,7 +68,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* TWO STACKED FEATURE TILES — Apple grid */}
+      {/* TALL TILE */}
       <section className="bg-background pb-3">
         <div className="container-tight">
           <Reveal>
@@ -88,11 +79,13 @@ const Home = () => {
               sub="Lorem ipsum dolor sit amet."
               dark
               tall
+              to={`/collection/${feat2.slug}`}
             />
           </Reveal>
         </div>
       </section>
 
+      {/* TWO TILES */}
       <section className="bg-background pb-3">
         <div className="container-tight grid grid-cols-1 md:grid-cols-2 gap-3">
           <Reveal>
@@ -101,6 +94,7 @@ const Home = () => {
               eyebrow="Product Three"
               headline={<>Made to move.</>}
               sub="Lorem ipsum dolor sit amet consectetur."
+              to={`/collection/${feat3.slug}`}
             />
           </Reveal>
           <Reveal delay={0.1}>
@@ -110,19 +104,22 @@ const Home = () => {
               headline={<>Crafted simply.</>}
               sub="Lorem ipsum dolor sit amet consectetur."
               dark
+              to={`/collection/${feat4.slug}`}
             />
           </Reveal>
         </div>
       </section>
 
+      {/* TWO TILES — story / stores */}
       <section className="bg-background pb-3">
         <div className="container-tight grid grid-cols-1 md:grid-cols-2 gap-3">
           <Reveal>
             <FeatureTile
               image={stockImages.craftHands}
-              eyebrow="Story"
+              eyebrow="About"
               headline={<>Built for everyone.</>}
               sub="Lorem ipsum dolor sit amet."
+              to="/maison"
             />
           </Reveal>
           <Reveal delay={0.1}>
@@ -132,12 +129,13 @@ const Home = () => {
               headline={<>Visit us in store.</>}
               sub="Lorem ipsum dolor sit amet."
               dark
+              to="/boutiques"
             />
           </Reveal>
         </div>
       </section>
 
-      {/* HORIZONTAL SHOP STRIP */}
+      {/* HORIZONTAL STRIP */}
       <section className="py-20 bg-background">
         <div className="container-tight">
           <Reveal as="h2" className="headline-md mb-8">
@@ -161,7 +159,7 @@ const Home = () => {
                 <div className="mt-4">
                   <p className="text-xs text-muted-foreground">{p.category}</p>
                   <p className="text-base font-semibold mt-1">{p.name}</p>
-                  <p className="text-sm text-muted-foreground mt-0.5">From {p.price}</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{p.tagline}</p>
                 </div>
               </Link>
             ))}
@@ -179,6 +177,7 @@ const FeatureTile = ({
   sub,
   dark = false,
   tall = false,
+  to,
 }: {
   image: string;
   eyebrow: string;
@@ -186,6 +185,7 @@ const FeatureTile = ({
   sub: string;
   dark?: boolean;
   tall?: boolean;
+  to: string;
 }) => {
   return (
     <div
@@ -204,12 +204,12 @@ const FeatureTile = ({
         <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight">{headline}</h3>
         <p className="mt-3 text-base md:text-lg opacity-80">{sub}</p>
         <div className="mt-5 flex items-center justify-center gap-5">
-          <button className={`pill-btn ${dark ? "bg-white text-black hover:bg-white/90" : "bg-accent text-accent-foreground hover:bg-accent/90"}`}>
-            Buy
-          </button>
-          <button className={`pill-btn ${dark ? "text-white hover:underline" : "text-accent hover:underline"} underline-offset-4`}>
+          <Link to={to} className={`pill-btn ${dark ? "bg-white text-black hover:bg-white/90" : "bg-accent text-accent-foreground hover:bg-accent/90"}`}>
+            Discover
+          </Link>
+          <Link to={to} className={`pill-btn ${dark ? "text-white hover:underline" : "text-accent hover:underline"} underline-offset-4`}>
             Learn more <ChevronRight size={14} className="ml-1" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
