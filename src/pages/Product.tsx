@@ -21,10 +21,11 @@ const Product = () => {
           <h1 className="headline-lg mt-3">{product.name}</h1>
           <p className="mt-4 text-xl md:text-2xl font-medium text-foreground/80">{product.tagline}</p>
           <div className="mt-5 flex items-center justify-center gap-5">
-            <Link to="#buy" className="pill-btn-primary">Buy</Link>
-            <Link to="#learn" className="pill-btn-ghost">Learn more <ChevronRight size={14} className="ml-1" /></Link>
+            <Link to="/contact" className="pill-btn-primary">Get in touch</Link>
+            <Link to="/boutiques" className="pill-btn-ghost">
+              Visit a store <ChevronRight size={14} className="ml-1" />
+            </Link>
           </div>
-          <p className="mt-2 text-xs text-muted-foreground">From {product.price} or $00.00/mo. for 12 mo.*</p>
         </div>
       </section>
 
@@ -74,7 +75,7 @@ const Product = () => {
                   <div className="mt-4 text-center">
                     <p className="text-xs text-muted-foreground">{p.category}</p>
                     <p className="text-base font-semibold mt-1">{p.name}</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">From {p.price}</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{p.tagline}</p>
                   </div>
                 </Link>
               </Reveal>
@@ -83,7 +84,7 @@ const Product = () => {
 
           <div className="mt-12 text-center">
             <Link to="/collection" className="text-sm text-accent hover:underline underline-offset-4 inline-flex items-center gap-1">
-              <ArrowLeft size={14} /> Back to shop
+              <ArrowLeft size={14} /> Back to collection
             </Link>
           </div>
         </div>

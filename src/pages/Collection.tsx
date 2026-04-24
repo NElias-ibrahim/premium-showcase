@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { products } from "@/data/products";
-import { Reveal } from "@/components/Reveal";
 
 const categories = ["All", "Category A", "Category B", "Category C", "Category D"] as const;
 
@@ -18,7 +17,7 @@ const Collection = () => {
     <>
       <section className="pt-20 pb-10 bg-background">
         <div className="container-tight text-center">
-          <p className="eyebrow">Shop</p>
+          <p className="eyebrow">Collection</p>
           <h1 className="headline-lg mt-3">Explore the lineup.</h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -49,36 +48,42 @@ const Collection = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-background">
-        <div className="container-tight grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
-          {filtered.map((p, i) => (
-            <motion.div
-              key={p.slug}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: (i % 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Link to={`/collection/${p.slug}`} className="group block">
-                <div className="aspect-square overflow-hidden rounded-2xl bg-surface">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="mt-4 text-center">
-                  <p className="text-xs text-muted-foreground">{p.category}</p>
-                  <h3 className="text-lg font-semibold mt-1">{p.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">From {p.price}</p>
-                  <p className="mt-3 text-sm text-accent group-hover:underline underline-offset-4">
-                    Buy ›
-                  </p>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+      <section className="py-16 bg-background min-h-[40vh]">
+        <div className="container-tight">
+          {filtered.length === 0 ? (
+            <p className="text-center text-muted-foreground py-20">No items in this category.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+              {filtered.map((p, i) => (
+                <motion.div
+                  key={p.slug}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: (i % 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Link to={`/collection/${p.slug}`} className="group block">
+                    <div className="aspect-square overflow-hidden rounded-2xl bg-surface">
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="mt-4 text-center">
+                      <p className="text-xs text-muted-foreground">{p.category}</p>
+                      <h3 className="text-lg font-semibold mt-1">{p.name}</h3>
+                      <p className="text-sm text-muted-foreground mt-0.5">{p.tagline}</p>
+                      <p className="mt-3 text-sm text-accent group-hover:underline underline-offset-4">
+                        Discover ›
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
