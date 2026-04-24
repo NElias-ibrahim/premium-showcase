@@ -1,68 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ───────────────────────────────────────────────
-   MAISON ALBA — Premium Apple-like Design System
+   Apple-like Design System — Template
    All colors MUST be HSL.
 ─────────────────────────────────────────────── */
 
 @layer base {
   :root {
-    /* Surfaces */
-    --background: 36 33% 97%;          /* warm off-white */
-    --foreground: 20 14% 8%;           /* near-black ink */
+    /* Apple-like neutrals */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
 
-    --surface: 36 30% 95%;
+    --surface: 0 0% 96%;
     --surface-elevated: 0 0% 100%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 14% 8%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 14% 8%;
+    --popover-foreground: 0 0% 7%;
 
-    /* Brand */
-    --primary: 20 14% 8%;              /* deep ink */
-    --primary-foreground: 36 33% 97%;
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 30 18% 90%;
-    --secondary-foreground: 20 14% 8%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 30 15% 92%;
-    --muted-foreground: 20 8% 38%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 28 45% 52%;              /* warm cognac */
-    --accent-foreground: 36 33% 97%;
+    --accent: 211 100% 50%; /* Apple blue */
+    --accent-foreground: 0 0% 100%;
 
-    --gold: 38 55% 55%;
-    --gold-foreground: 20 14% 8%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 45%;
-    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 7%;
 
-    --border: 30 12% 86%;
-    --input: 30 12% 86%;
-    --ring: 20 14% 8%;
+    --radius: 1.25rem;
 
-    --radius: 1rem;
-
-    /* Gradients */
-    --gradient-hero: linear-gradient(180deg, hsl(36 33% 97%) 0%, hsl(30 25% 92%) 100%);
-    --gradient-fade: linear-gradient(180deg, transparent 0%, hsl(20 14% 8% / 0.6) 100%);
-    --gradient-shine: linear-gradient(135deg, hsl(20 14% 8%) 0%, hsl(20 8% 28%) 50%, hsl(20 14% 8%) 100%);
-
-    /* Shadows */
-    --shadow-soft: 0 1px 2px hsl(20 14% 8% / 0.04), 0 8px 24px hsl(20 14% 8% / 0.06);
-    --shadow-elevated: 0 4px 12px hsl(20 14% 8% / 0.08), 0 24px 64px hsl(20 14% 8% / 0.12);
-    --shadow-product: 0 40px 80px -20px hsl(20 14% 8% / 0.25);
-
-    /* Motion */
-    --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
-
+    /* Sidebar (unused but kept for shadcn compat) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -71,6 +54,9 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Motion */
+    --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
@@ -86,35 +72,47 @@
   body {
     @apply bg-background text-foreground font-sans;
     font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.011em;
   }
   ::selection {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
 }
 
 @layer components {
-  .display-serif {
-    font-family: 'Fraunces', serif;
-    font-optical-sizing: auto;
-    letter-spacing: -0.02em;
+  .headline-xl {
+    @apply text-[clamp(3rem,9vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.04em];
+  }
+  .headline-lg {
+    @apply text-[clamp(2.5rem,6vw,5rem)] font-semibold leading-[1] tracking-[-0.035em];
+  }
+  .headline-md {
+    @apply text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.03em];
   }
   .eyebrow {
-    @apply text-xs uppercase tracking-[0.25em] font-medium text-muted-foreground;
+    @apply text-sm font-medium text-accent;
   }
   .container-tight {
-    @apply mx-auto max-w-7xl px-6 sm:px-8 lg:px-12;
+    @apply mx-auto max-w-[1200px] px-6 sm:px-8;
   }
   .container-narrow {
-    @apply mx-auto max-w-4xl px-6 sm:px-8;
-  }
-  .link-underline {
-    @apply relative inline-block after:absolute after:left-0 after:bottom-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-500 hover:after:origin-left hover:after:scale-x-100;
-    transition: color 300ms var(--ease-apple);
+    @apply mx-auto max-w-3xl px-6 sm:px-8;
   }
   .glass-nav {
     background: hsl(var(--background) / 0.72);
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
   }
+  .pill-btn {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300;
+  }
+  .pill-btn-primary {
+    @apply pill-btn bg-accent text-accent-foreground hover:bg-accent/90;
+  }
+  .pill-btn-ghost {
+    @apply pill-btn text-accent hover:underline underline-offset-4;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }

@@ -1,53 +1,39 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { to: "/", label: "Accueil" },
-  { to: "/collection", label: "Collection" },
-  { to: "/maison", label: "La Maison" },
-  { to: "/boutiques", label: "Boutiques" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", label: "Home" },
+  { to: "/collection", label: "Shop" },
+  { to: "/maison", label: "About" },
+  { to: "/boutiques", label: "Stores" },
+  { to: "/contact", label: "Support" },
 ];
 
 export const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-nav border-b border-border/60" : "bg-transparent"
-      }`}
-    >
-      <nav className="container-tight flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="display-serif text-2xl font-medium tracking-tight">
-            Maison<span className="text-accent">·</span>Alba
-          </span>
+    <header className="fixed inset-x-0 top-0 z-50 glass-nav border-b border-border/60">
+      <nav className="container-tight flex h-12 items-center justify-between">
+        <Link to="/" className="text-base font-medium tracking-tight">
+          Brand
         </Link>
 
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.to}>
               <NavLink
                 to={l.to}
                 end={l.to === "/"}
                 className={({ isActive }) =>
-                  `text-sm transition-colors duration-300 link-underline ${
+                  `text-xs transition-colors duration-300 ${
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`
                 }
@@ -58,19 +44,17 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        <Link
-          to="/contact"
-          className="hidden md:inline-flex items-center rounded-full bg-foreground px-5 py-2 text-sm text-primary-foreground transition-transform duration-500 hover:scale-[1.03]"
-        >
-          Prendre rendez-vous
-        </Link>
+        <div className="hidden md:flex items-center gap-5 text-muted-foreground">
+          <button aria-label="Search" className="hover:text-foreground transition-colors"><Search size={15} /></button>
+          <button aria-label="Bag" className="hover:text-foreground transition-colors"><ShoppingBag size={15} /></button>
+        </div>
 
         <button
           className="md:hidden p-2 -mr-2 text-foreground"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
@@ -90,7 +74,7 @@ export const Navbar = () => {
                     to={l.to}
                     end={l.to === "/"}
                     className={({ isActive }) =>
-                      `block py-2 display-serif text-2xl ${
+                      `block py-2 text-2xl font-semibold tracking-tight ${
                         isActive ? "text-foreground" : "text-muted-foreground"
                       }`
                     }

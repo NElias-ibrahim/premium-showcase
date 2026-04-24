@@ -4,41 +4,35 @@ import { motion } from "framer-motion";
 import { products } from "@/data/products";
 import { Reveal } from "@/components/Reveal";
 
-const categories = ["Tout", "Horlogerie", "Maroquinerie", "Souliers", "Accessoires"] as const;
+const categories = ["All", "Category A", "Category B", "Category C", "Category D"] as const;
 
 const Collection = () => {
-  const [active, setActive] = useState<(typeof categories)[number]>("Tout");
+  const [active, setActive] = useState<(typeof categories)[number]>("All");
 
   const filtered = useMemo(
-    () => (active === "Tout" ? products : products.filter((p) => p.category === active)),
+    () => (active === "All" ? products : products.filter((p) => p.category === active)),
     [active]
   );
 
   return (
     <>
-      <section className="pt-24 pb-12">
+      <section className="pt-20 pb-10 bg-background">
         <div className="container-tight text-center">
-          <Reveal as="p" className="eyebrow">La Collection</Reveal>
-          <Reveal as="h1" delay={0.1} className="display-serif text-6xl md:text-8xl mt-6 leading-[0.95]">
-            Tout ce qui nous
-            <br />
-            <span className="italic">émeut.</span>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-8 max-w-xl mx-auto text-muted-foreground">
-              Une sélection rigoureuse, pensée comme une garde-robe pour la vie.
-            </p>
-          </Reveal>
+          <p className="eyebrow">Shop</p>
+          <h1 className="headline-lg mt-3">Explore the lineup.</h1>
+          <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
         </div>
       </section>
 
-      <section className="sticky top-16 z-30 glass-nav border-y border-border/60">
-        <div className="container-tight flex items-center gap-2 overflow-x-auto py-4 no-scrollbar">
+      <section className="sticky top-12 z-30 glass-nav border-y border-border/60">
+        <div className="container-tight flex items-center gap-2 overflow-x-auto py-3 no-scrollbar justify-start md:justify-center">
           {categories.map((c) => (
             <button
               key={c}
               onClick={() => setActive(c)}
-              className={`relative shrink-0 rounded-full px-5 py-2 text-sm transition-colors duration-300 ${
+              className={`relative shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-colors duration-300 ${
                 active === c ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -55,32 +49,32 @@ const Collection = () => {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container-tight grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+      <section className="py-16 bg-background">
+        <div className="container-tight grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
           {filtered.map((p, i) => (
             <motion.div
               key={p.slug}
               layout
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: (i % 6) * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: (i % 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
             >
               <Link to={`/collection/${p.slug}`} className="group block">
-                <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-secondary">
+                <div className="aspect-square overflow-hidden rounded-2xl bg-surface">
                   <img
                     src={p.image}
                     alt={p.name}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="mt-5 flex items-baseline justify-between gap-4">
-                  <div>
-                    <p className="eyebrow text-[10px]">{p.category}</p>
-                    <h3 className="display-serif text-2xl mt-2 group-hover:text-accent transition-colors duration-300">{p.name}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{p.tagline}</p>
-                  </div>
-                  <p className="text-sm whitespace-nowrap">{p.price}</p>
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-muted-foreground">{p.category}</p>
+                  <h3 className="text-lg font-semibold mt-1">{p.name}</h3>
+                  <p className="text-sm text-muted-foreground mt-0.5">From {p.price}</p>
+                  <p className="mt-3 text-sm text-accent group-hover:underline underline-offset-4">
+                    Buy ›
+                  </p>
                 </div>
               </Link>
             </motion.div>
